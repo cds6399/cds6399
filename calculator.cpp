@@ -1,17 +1,17 @@
 #include "calculator.h"
 
 void addition(){
-    cout << "=" << a + b <<endl;
+
 }
 
 void subtraction(){
-  cout << "= " << a - b << endl;
+
 }
 
 void multiplication(){
-
+  cout << "= " << a * b << endl;
 }
 
 void division(){
-    
+  cout << "= " << a / b << endl;
 }
