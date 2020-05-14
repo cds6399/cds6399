@@ -1,35 +1,35 @@
 
 #include <stdio.h>
 
-//¼öÇĞ°ü·Ã ¶óÀÌºê·¯¸® °¡Á®¿À±â
+//ìˆ˜í•™ê´€ë ¨ ë¼ì´ë¸ŒëŸ¬ë¦¬ ê°€ì ¸ì˜¤ê¸°
 
 #include <math.h>
 
-?
+
 
 void menu();
 
-//ÀÏÀÏ Ä«ÆäÀÎ ÃÖ´ë·® °è»ê
+//ì¼ì¼ ì¹´í˜ì¸ ìµœëŒ€ëŸ‰ ê³„ì‚°
 
 float caf_per_day(float weight);
 
-//ÀÏÀÏ ¾Æ¸Ş¸®Ä«³ë Ä¡»ç·® °è»ê
+//ì¼ì¼ ì•„ë©”ë¦¬ì¹´ë…¸ ì¹˜ì‚¬ëŸ‰ ê³„ì‚°
 
 float americano_lethal_dose(float weight);
 
-//Ã¼Áú·®Áö¼ö °è»ê
+//ì²´ì§ˆëŸ‰ì§€ìˆ˜ ê³„ì‚°
 
 float bmi(float weight, float height);
 
-//ºñ¸¸µµ °á°ú Ãâ·Â
+//ë¹„ë§Œë„ ê²°ê³¼ ì¶œë ¥
 
 void bmiresult(char* name, float weight, float height);
 
-//¹° Ä¡»ç·®
+//ë¬¼ ì¹˜ì‚¬ëŸ‰
 
 float water_lethal_dose(float weight);
 
-?
+
 
 struct people{
 
@@ -41,15 +41,15 @@ struct people{
 
 };
 
-?
 
-//main ÇÔ¼ö
+
+//main í•¨ìˆ˜
 
 int main(void) {
 
-?
 
-    //º¯¼ö¼±¾ğ
+
+    //ë³€ìˆ˜ì„ ì–¸
 
    float height = 0;
 
@@ -59,75 +59,75 @@ int main(void) {
 
     int num;
 
-?
 
-    printf("»ç¶÷ ¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n");
+
+    printf("ì‚¬ëŒ ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”.\n");
 
     scanf("%d",&num);
 
-?
+
 
     struct people s[num];
 
-?
+
 
     for(int i=0;i<num;i++){
 
-        printf("%d¹ø »ç¶÷ ÀÌ¸§°ú ¸ö¹«°Ô, Å°¸¦ ÀÔ·ÂÇÏ¼¼¿ä.",i+1);
+        printf("%dë²ˆ ì‚¬ëŒ ì´ë¦„ê³¼ ëª¸ë¬´ê²Œ, í‚¤ë¥¼ ì…ë ¥í•˜ì„¸ìš”.",i+1);
 
         scanf("%s %f %f", s[i].name, &s[i].weight, &s[i].height);
 
     }
 
-?
 
-    /* ±âÁ¸ÀÇ ÄÚµå¸¦ ÁÖ¼®Ã³¸®¸¦ ÅëÇØ ¹«È¿È­ ½ÃÅ´
 
-   printf("´ç½ÅÀÇ °Ç°­ °è»ê±â\n");
+    /* ê¸°ì¡´ì˜ ì½”ë“œë¥¼ ì£¼ì„ì²˜ë¦¬ë¥¼ í†µí•´ ë¬´íš¨í™” ì‹œí‚´
 
-?
+   printf("ë‹¹ì‹ ì˜ ê±´ê°• ê³„ì‚°ê¸°\n");
 
-    //½ÅÃ¼ »çÇ× ÀÔ·Â
 
-   printf("´ç½ÅÀÇ ¸ö¹«°Ô¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+
+    //ì‹ ì²´ ì‚¬í•­ ì…ë ¥
+
+   printf("ë‹¹ì‹ ì˜ ëª¸ë¬´ê²Œë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 
     scanf("%f", &weight);
 
-    printf("´ç½ÅÀÇ Å°¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+    printf("ë‹¹ì‹ ì˜ í‚¤ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
 
     scanf("%f", &height);
 
-?
+
 
     */
 
     int i=0;
 
-    //¹«ÇÑ ·çÇÁ
+    //ë¬´í•œ ë£¨í”„
 
    while (1) {
 
-        //¸Ş´ºÆÇ È£Ãâ
+        //ë©”ë‰´íŒ í˜¸ì¶œ
 
        menu();
 
         
 
-?
 
-        printf("%d¹ø »ç¶÷ÀÌ ¾Ë°íÀÚ ÇÏ´Â Á¤º¸¸¦ °í¸£½Ã¿À.(0ÀÔ·Â½Ã Á¾·á)",i+1);
+
+        printf("%dë²ˆ ì‚¬ëŒì´ ì•Œê³ ì í•˜ëŠ” ì •ë³´ë¥¼ ê³ ë¥´ì‹œì˜¤.(0ì…ë ¥ì‹œ ì¢…ë£Œ)",i+1);
 
         scanf("%d", &choice);
 
-?
 
-        //¹«ÇÑ ·çÇÁ ¹İº¹¹® Å»Ãâ Á¶°Ç
+
+        //ë¬´í•œ ë£¨í”„ ë°˜ë³µë¬¸ íƒˆì¶œ ì¡°ê±´
 
        if(choice==0)break;
 
-?
 
-        //choice °ª¿¡ µû¶ó ÇØ´ç ÄÉÀÌ½º·Î ÀÌµ¿
+
+        //choice ê°’ì— ë”°ë¼ í•´ë‹¹ ì¼€ì´ìŠ¤ë¡œ ì´ë™
 
        switch (choice) {
 
@@ -135,19 +135,19 @@ int main(void) {
 
             case 1:
 
-                printf("%sÀÇ ÀÏÀÏ Ä«ÆäÀÎ ÃÖ´ëÄ¡´Â %.1fÀÔ´Ï´Ù.\n",s[i].name,caf_per_day(s[i].weight));
+                printf("%sì˜ ì¼ì¼ ì¹´í˜ì¸ ìµœëŒ€ì¹˜ëŠ” %.1fì…ë‹ˆë‹¤.\n",s[i].name,caf_per_day(s[i].weight));
 
                 break;
 
             case 2:
 
-                printf("%sÀÇ ÀÏÀÏ ¾Æ¸Ş¸®Ä«³ë Ä¡»ç·®Àº %.1f mLÀÔ´Ï´Ù.\n",s[i].name,americano_lethal_dose(s[i].weight));
+                printf("%sì˜ ì¼ì¼ ì•„ë©”ë¦¬ì¹´ë…¸ ì¹˜ì‚¬ëŸ‰ì€ %.1f mLì…ë‹ˆë‹¤.\n",s[i].name,americano_lethal_dose(s[i].weight));
 
                 break;
 
             case 3:
 
-                printf("%sÀÇ Ã¼Áú·®Áö¼ö´Â %.1fÀÔ´Ï´Ù\n",s[i].name,bmi(s[i].weight,s[i].height));
+                printf("%sì˜ ì²´ì§ˆëŸ‰ì§€ìˆ˜ëŠ” %.1fì…ë‹ˆë‹¤\n",s[i].name,bmi(s[i].weight,s[i].height));
 
                 break;
 
@@ -159,13 +159,13 @@ int main(void) {
 
             case 5:
 
-                printf("%sÀÌ ÇÏ·ç¿¡ %.1fLÀÌ»ó ¸¶½Ã¸é ¹°Áßµ¶À¸·Î »ç¸ÁÇÒ À§ÇèÀÌ Å®´Ï´Ù.\n",s[i].name,water_lethal_dose(s[i].weight));
+                printf("%sì´ í•˜ë£¨ì— %.1fLì´ìƒ ë§ˆì‹œë©´ ë¬¼ì¤‘ë…ìœ¼ë¡œ ì‚¬ë§í•  ìœ„í—˜ì´ í½ë‹ˆë‹¤.\n",s[i].name,water_lethal_dose(s[i].weight));
 
                 break;
 
             case 6:
 
-                printf("---´ÙÀ½ »ç¶÷À¸·Î ³Ñ¾î°©´Ï´Ù.---\n");
+                printf("---ë‹¤ìŒ ì‚¬ëŒìœ¼ë¡œ ë„˜ì–´ê°‘ë‹ˆë‹¤.---\n");
 
                 i++;
 
@@ -181,47 +181,47 @@ int main(void) {
 
 }
 
-?
+
 
 void menu() {
 
     printf("\n");
 
-    printf("1.ÀÏÀÏ Ä«ÆäÀÎ ÃÖ´ëÄ¡\n");
+    printf("1.ì¼ì¼ ì¹´í˜ì¸ ìµœëŒ€ì¹˜\n");
 
-    printf("2.ÀÏÀÏ ¾Æ¸Ş¸®Ä«³ë Ä¡»ç·®\n");
+    printf("2.ì¼ì¼ ì•„ë©”ë¦¬ì¹´ë…¸ ì¹˜ì‚¬ëŸ‰\n");
 
-    printf("3.Ã¼Áú·® Áö¼ö\n");
+    printf("3.ì²´ì§ˆëŸ‰ ì§€ìˆ˜\n");
 
-    printf("4.bmi¿¡ µû¸¥ ´ç½ÅÀÇ µî±Ş\n");
+    printf("4.bmiì— ë”°ë¥¸ ë‹¹ì‹ ì˜ ë“±ê¸‰\n");
 
-    printf("5.ÀÏÀÏ ¹° Èí¼ö Ä¡»ç·® °è»ê\n");
+    printf("5.ì¼ì¼ ë¬¼ í¡ìˆ˜ ì¹˜ì‚¬ëŸ‰ ê³„ì‚°\n");
 
-    printf("6.´ÙÀ½ »ç¶÷À¸·Î ³Ñ¾î°¡±â\n");
+    printf("6.ë‹¤ìŒ ì‚¬ëŒìœ¼ë¡œ ë„˜ì–´ê°€ê¸°\n");
 
 }
 
-?
 
-//ÀÏÀÏ Ä«ÆäÀÎ·®
+
+//ì¼ì¼ ì¹´í˜ì¸ëŸ‰
 
 float caf_per_day(float weight) {
 
     int day_caf = 0;
 
-?
+
 
     day_caf = weight * 2.5;
 
-?
+
 
     return day_caf;
 
 }
 
-?
 
-//ÀÏÀÏ ¾Æ¸Ş¸®Ä«³ë Ä¡»ç·®
+
+//ì¼ì¼ ì•„ë©”ë¦¬ì¹´ë…¸ ì¹˜ì‚¬ëŸ‰
 
 float americano_lethal_dose(float weight) {
 
@@ -233,17 +233,17 @@ float americano_lethal_dose(float weight) {
 
 }
 
-?
 
-//Ã¼Áö¹æÁö¼ö
+
+//ì²´ì§€ë°©ì§€ìˆ˜
 
 float bmi(float weight, float height) {
 
     float bmi_1 = 0;
 
-    //bmi°è»ê : ¸ö¹«°Ô/Å°^2
+    //bmiê³„ì‚° : ëª¸ë¬´ê²Œ/í‚¤^2
 
-    //powÇÔ¼ö - Á¦°öÈ­
+    //powí•¨ìˆ˜ - ì œê³±í™”
 
    bmi_1 = (weight / pow(height/100, 2));
 
@@ -251,69 +251,69 @@ float bmi(float weight, float height) {
 
 }
 
-?
 
-//bmi¿¡ µû¸¥ µî±Ş
+
+//bmiì— ë”°ë¥¸ ë“±ê¸‰
 
 void bmiresult(char*name, float weight, float height){
 
-    //bmi ÇÔ¼ö È£Ãâ ¹× º¯¼ö¿¡ ±× °ª ÀúÀå
+    //bmi í•¨ìˆ˜ í˜¸ì¶œ ë° ë³€ìˆ˜ì— ê·¸ ê°’ ì €ì¥
 
    float bmi_1 = bmi(weight, height);
 
     if(bmi_1>=35){
 
-        printf("%sÀº 3´Ü°è ºñ¸¸ ÀÔ´Ï´Ù.\n",name);
+        printf("%sì€ 3ë‹¨ê³„ ë¹„ë§Œ ì…ë‹ˆë‹¤.\n",name);
 
     }
 
     else if(bmi_1>=30){
 
-        printf("%sÀº 2´Ü°è ºñ¸¸ ÀÔ´Ï´Ù.\n",name);
+        printf("%sì€ 2ë‹¨ê³„ ë¹„ë§Œ ì…ë‹ˆë‹¤.\n",name);
 
     }
 
     else if(bmi_1>=25){
 
-        printf("%sÀº 1´Ü°è ºñ¸¸ ÀÔ´Ï´Ù.\n",name);
+        printf("%sì€ 1ë‹¨ê³„ ë¹„ë§Œ ì…ë‹ˆë‹¤.\n",name);
 
     }
 
     else if(bmi_1>=23){
 
-        printf("%sÀº ºñ¸¸ Àü´Ü°èÀÔ´Ï´Ù.\n",name);
+        printf("%sì€ ë¹„ë§Œ ì „ë‹¨ê³„ì…ë‹ˆë‹¤.\n",name);
 
     }
 
     else if(bmi_1>=18.5){
 
-        printf("%sÀº Á¤»óÀÔ´Ï´Ù.\n",name);
+        printf("%sì€ ì •ìƒì…ë‹ˆë‹¤.\n",name);
 
     }
 
     else{
 
-        printf("%sÀº ÀúÃ¼ÁßÀÔ´Ï´Ù.\n",name);
+        printf("%sì€ ì €ì²´ì¤‘ì…ë‹ˆë‹¤.\n",name);
 
     }
 
-?
+
 
 }
 
-?
 
-//¹°Áßµ¶ »ç¸Á·ü
+
+//ë¬¼ì¤‘ë… ì‚¬ë§ë¥ 
 
 float water_lethal_dose(float weight){
 
     float water_ld = 0.0;
 
-?
+
 
     water_ld = weight*0.09;
 
-?
+
 
     return water_ld;
 
