@@ -1,0 +1,355 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+
+//추후 유지보수를 편히 하기위해 100이란 숫자를
+//MAX_NUM으로 설정, 100을 200으로 바꾸면
+//MAX_NUM은 200이 됨
+#define MAX_NUM 100
+
+
+
+//사용자의 정보를 저장하는 구조체
+typedef struct {
+   char name[30];
+   char number[30];
+   float weight;
+   float height;
+}User;
+
+
+void menu();
+//일일 카페인 최대량 계산
+float caf_per_day(float weight);
+//일일 아메리카노 치사량 계산
+float americano_lethal_dose(float weight);
+//체질량지수 계산
+float bmi(float weight, float height);
+//비만도 결과 출력
+void bmiresult(float weight, float height);
+//물 치사량
+float water_lethal_dose(float weight);
+
+
+void insert(User* ptr, int* num);
+int deleted(User* ptr, int* num);
+int search(User* ptr, int* num);
+void printAll(User* ptr, int* num);
+
+
+
+int main(void) {
+   int input;
+   User user[MAX_NUM]; //사용자 정보를 저장할 구조체 배열
+   int person = 0; //저장된 user수
+
+
+
+   //메뉴 선택
+   while (1) {
+      
+      printf("***** Menu ***** \n");
+      printf("1. Insert \n");
+      printf("2. Delete \n");
+      printf("3. Search \n");
+      printf("4. Print All \n");
+      printf("5. Exit \n");
+
+
+
+      printf("Choose the item: ");
+      scanf("%d", &input);
+
+
+
+      if (input == 1) {
+         printf("\n[INSERT] \n");
+         insert(user, &person);
+      }
+      else if (input == 2) {
+         printf("\n[Delete] \n");
+         deleted(user, &person);
+      }
+      else if (input == 3) {
+         printf("\n[Search] \n");
+         search(user, &person);
+      }
+      else if (input == 4) {
+         printf("\n[Print All] \n");
+         printAll(user, &person);
+      }
+      else if (input == 5) {
+         printf("\n[Exit] \n");
+         return 0;
+      }
+      else
+         printf("\nerror! ReTry! \n\n");
+   }
+
+   return 0;
+}
+
+
+
+//사용자의 정보를 삽입하는 함수
+void insert(User* ptr, int* num) {
+   User p;
+
+   //유저정보가 꽉 차지 않으면
+   if (*num < MAX_NUM) {
+      printf("Input Name: ");
+      scanf("%s", p.name);
+      printf("Input Tel Number: ");
+      scanf("%s", p.number);
+      
+      printf("Input Weight: ");
+      scanf("%f", &p.weight);
+      printf("Input Height: ");
+      scanf("%f", &p.height);
+
+      ptr[*num] = p;
+
+
+      (*num)++;
+      printf("  Data Inserted \n\n");
+   }
+   //유저 정보가 꽉 차면
+   else
+      printf("  Data Full \n\n");
+}
+
+
+
+//사용자의 정보를 삭제하는 함수
+int deleted(User* ptr, int* num) {
+   char name[30];
+   int i, j;
+
+
+
+   //유저 정보가 한개라도 남아있으면
+   if (*num > 0) {
+      printf("Input Name: ");
+      scanf("%s", name);
+
+
+
+      for (i = 0; i < MAX_NUM; i++) {
+         //문자열이므로 비교하기위해 strcmp사용
+         if (strcmp(name, ptr[i].name) == 0) {
+
+
+
+            (*num)--;
+            printf("  Data Deleted \n\n");
+
+
+
+            //데이터가 가득 차지 않았다면
+            if (i != MAX_NUM - 1) {
+               for (j = i; j < MAX_NUM; j++) {
+                  //문자열이므로 strcpy를 사용하여 데이터 복사
+                  strcpy(ptr[j].name, ptr[j + 1].name);
+                  strcpy(ptr[j].number, ptr[j + 1].number);
+                  ptr[j].weight = ptr[j + 1].weight;
+                  ptr[j].height = ptr[j + 1].height;
+               }
+
+
+               //구조체 배열의 마지막을 NULL로 바꿈
+               *ptr[MAX_NUM - 1].name = NULL;
+               *ptr[MAX_NUM - 1].number = NULL;
+            }
+
+
+            //데이터가 가득 찼다면
+            else {
+               //구조체 배열의 마지막을 NULL로 바꿈
+               *ptr[MAX_NUM - 1].name = NULL;
+               *ptr[MAX_NUM - 1].number = NULL;
+            }
+            return 0;
+         }
+      }
+      printf("Not Found \n\n");
+      return 0;
+
+   }
+   //저장된 유저 정보가 없다면
+
+   else {
+      printf("  No Data \n\n");
+      return 0;
+
+   }
+
+}
+
+
+
+//사용자의 정보를 검색하는 함수
+int search(User* ptr, int* num) {
+   char name[30];
+   int i;
+   int choice = 0;
+
+
+   //저장된 데이터가 있다면
+   if (*num > 0) {
+      printf("Input Name: ");
+      scanf("%s", name);
+
+
+
+
+
+      for (i = 0; i < MAX_NUM; i++) {
+         //strcmp는 문자열이 일치할때 0을 반환
+         //0은 C언어에서 거짓을 의미
+         //그러므로 ! 을 붙여 참으로 변경하여 실행
+         if (!strcmp(name, ptr[i].name)) {
+
+            printf("Name : %s ", ptr[i].name);
+            printf("Tel : %s \n", ptr[i].number);
+            printf("Weight : %f ", ptr[i].weight);
+            printf("Height : %f ", ptr[i].height);
+            printf("  Data Found \n\n");
+
+            while (1) {
+               printf("\n");
+               printf("****************** \n");
+               printf("당신의 건강 계산기\n");
+               printf("****************** \n");
+               //메뉴판 호출
+               menu();
+               
+               printf("당신이 알고자 하는 정보를 고르시오.(0입력시 종료)");
+               scanf("%d", &choice);
+
+               //무한 루프 반복문 탈출 조건
+               if (choice == 0)break;
+
+               //choice 값에 따라 해당 케이스로 이동
+               switch (choice) {
+
+               case 1:
+                  printf("당신의 일일 카페인 최대치는 %.1f입니다.\n", caf_per_day(ptr[i].weight));
+                  break;
+               case 2:
+                  printf("당신의 일일 아메리카노 치사량은 %.1f mL입니다.\n", americano_lethal_dose(ptr[i].weight));
+                  break;
+               case 3:
+                  printf("당신의 체질량지수는 %.1f입니다\n", bmi(ptr[i].weight, ptr[i].height));
+                  break;
+               case 4:
+                  bmiresult(ptr[i].weight, ptr[i].height);
+                  break;
+               case 5:
+                  printf("당신이 하루에 %.1fL이상 마시면 물중독으로 사망할 위험이 큽니다.\n", water_lethal_dose(ptr[i].weight));
+                  break;
+
+               }
+            }
+
+            return 0;
+         }
+      }
+      printf("Not Found \n\n");
+      return 0;
+   }
+   else {
+      printf("  No Data \n\n");
+      return 0;
+   }
+}
+
+
+
+//저장된 모든 이름과 전화번호 정보를 출력하는 함수
+void printAll(User* ptr, int* num) {
+   int i = 0;
+
+
+
+   if (*num > 0) {
+      for (i = 0; i < *num; i++) {
+         printf("Name : %s ", ptr[i].name);
+         printf("Tel : %s \n", ptr[i].number);
+         printf("Weight : %f ", ptr[i].weight);
+         printf("Height : %f ", ptr[i].height);
+      }
+      printf("  Data Print \n\n");
+   }
+   else
+      printf("  No Data \n\n");
+}
+
+
+void menu() {
+   printf("\n");
+   printf("1.일일 카페인 최대치\n");
+   printf("2.일일 아메리카노 치사량\n");
+   printf("3.체질량 지수\n");
+   printf("4.bmi에 따른 당신의 등급\n");
+   printf("5.일일 물 흡수 치사량 계산\n");
+}
+
+//일일 카페인량
+float caf_per_day(float weight) {
+   int day_caf = 0;
+
+   day_caf = weight * 2.5;
+
+   return day_caf;
+}
+
+//일일 아메리카노 치사량
+float americano_lethal_dose(float weight) {
+   float lethal_dose = 0;
+   lethal_dose = weight * 362;
+   return lethal_dose;
+}
+
+//체지방지수
+float bmi(float weight, float height) {
+   float bmi_1 = 0;
+   //bmi계산 : 몸무게/키^2
+   //pow함수 - 제곱화
+   bmi_1 = (weight / pow(height / 100, 2));
+   return bmi_1;
+}
+
+//bmi에 따른 등급
+void bmiresult(float weight, float height) {
+   //bmi 함수 호출 및 변수에 그 값 저장
+   float bmi_1 = bmi(weight, height);
+   if (bmi_1 >= 35) {
+      printf("당신은 3단계 비만 입니다.\n");
+   }
+   else if (bmi_1 >= 30) {
+      printf("당신은 2단계 비만 입니다.\n");
+   }
+   else if (bmi_1 >= 25) {
+      printf("당신은 1단계 비만 입니다.\n");
+   }
+   else if (bmi_1 >= 23) {
+      printf("당신은 비만 전단계입니다.\n");
+   }
+   else if (bmi_1 >= 18.5) {
+      printf("당신은 정상입니다.\n");
+   }
+   else {
+      printf("당신은 저체중입니다.\n");
+   }
+
+}
+
+//물중독 사망률
+float water_lethal_dose(float weight) {
+   float water_ld = 0.0;
+
+   water_ld = weight * 0.09;
+
+   return water_ld;
+}
